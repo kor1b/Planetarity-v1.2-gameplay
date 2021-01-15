@@ -6,13 +6,12 @@ public class PlayerInputSystem : MonoBehaviour
 {
     private InputMaster _input;
 
-    public float AimInputDirection { get; set; }
+    public int AimInputDirection { get; private set; }
 
     public delegate void OnInputChanged();
 
-    public OnInputChanged aimInputHandleEventHandler;
-    public OnInputChanged aimInputCancelEventHandler;
-
+    public OnInputChanged aimInputEventHandler;
+    
     private void Awake()
     {
         _input = new InputMaster();
@@ -34,16 +33,14 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void HandleAimInput(InputAction.CallbackContext context)
     {
-        AimInputDirection = _input.Player.Aim.ReadValue<float>();
+        AimInputDirection = (int)_input.Player.Aim.ReadValue<float>();
         
-        aimInputHandleEventHandler?.Invoke();
+        aimInputEventHandler?.Invoke();
     }
 
     private void CancelAimInput(InputAction.CallbackContext context)
     {
         AimInputDirection = 0;
-        
-        aimInputCancelEventHandler?.Invoke();
     }
 
     private void OnEnable()

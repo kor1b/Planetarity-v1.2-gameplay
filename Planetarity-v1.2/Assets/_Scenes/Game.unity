@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimOrigin: {fileID: 1984001502}
-  rotationSpeed: 90
+  rotationSpeed: 180
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
