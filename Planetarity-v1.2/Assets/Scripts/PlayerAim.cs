@@ -5,7 +5,7 @@
 
     public class PlayerAim : MonoBehaviour
     {
-        [SerializeField] private Transform aimOrigin;
+        public Transform aimOrigin;
 
         [SerializeField] private float rotationSpeed;
 
@@ -17,7 +17,7 @@
             _collider = GetComponent<SphereCollider>();
             _playerInputSystem = GetComponent<PlayerInputSystem>();
 
-            _playerInputSystem.aimInputEventHandler += Aim;
+            _playerInputSystem.aimEventHandler += Aim;
         }
 
         private void Start()
@@ -39,16 +39,16 @@
                 aimOrigin.RotateAround(transform.position,
                     aimOrigin.forward,
                     _playerInputSystem.AimInputDirection * -rotationSpeed * Time.deltaTime);
-                
+
                 yield return null;
             }
         }
-        
+
         private void OnDestroy()
         {
             if (_playerInputSystem != null)
             {
-                _playerInputSystem.aimInputEventHandler -= Aim;
+                _playerInputSystem.aimEventHandler -= Aim;
             }
         }
 
