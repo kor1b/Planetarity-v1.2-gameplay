@@ -27,7 +27,7 @@
             input.Player.Aim.canceled -= CancelAimInput;
         }
 
-        protected override void HandleAimInput(InputAction.CallbackContext context)
+        public override void HandleAimInput(InputAction.CallbackContext context)
         {
             AimInputDirection = (int) input.Player.Aim.ReadValue<float>();
 

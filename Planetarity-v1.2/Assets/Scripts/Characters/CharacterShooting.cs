@@ -4,7 +4,7 @@ namespace Planetarity
 {
     using Input;
 
-    public class PlanetWeapon : MonoBehaviour
+    public class CharacterShooting : MonoBehaviour
     {
         [SerializeField] private GameObject rocketPrefab;
         [SerializeField] private float cooldown;
@@ -19,7 +19,7 @@ namespace Planetarity
             inputSystem = GetComponent<CharacterInputSystem>();
             characterAim = GetComponent<CharacterAim>();
 
-            inputSystem.ShootEventHandler += Shoot;
+            inputSystem.OnInputShoot += Shoot;
         }
 
         private void Shoot()
@@ -39,7 +39,7 @@ namespace Planetarity
         {
             if (inputSystem != null)
             {
-                inputSystem.ShootEventHandler -= Shoot;
+                inputSystem.OnInputShoot -= Shoot;
             }
         }
     }

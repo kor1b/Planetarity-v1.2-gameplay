@@ -12,6 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fdab6a7cd64aa4a95040a16dd660c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5708927973409286294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7527084892853134480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c8227a5534416681619b33785e8482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 4848196419811316978}
+  rotationSpeed: 90
 --- !u!114 &7042751761876246971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25,6 +39,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+--- !u!114 &4865007658852878685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7527084892853134480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19cf3119182428e9cff27c9f59348e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   enemy: {fileID: 0}
 --- !u!1001 &1416336879905807143
 PrefabInstance:

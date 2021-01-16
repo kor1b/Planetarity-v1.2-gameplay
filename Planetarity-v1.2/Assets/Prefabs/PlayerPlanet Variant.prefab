@@ -12,6 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae85052f8a997e40904378bede685b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4562451431952809641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015037988256100897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46f39ec1c53477e8c7c4219ef2276c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 5361457026976498243}
+  rotationSpeed: 90
 --- !u!114 &7392360777708182458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +114,7 @@ PrefabInstance:
     - target: {fileID: 8922269914596278199, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: m_Name
-      value: PlayerPlanet
+      value: PlayerPlanet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278199, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
@@ -112,6 +126,12 @@ PrefabInstance:
 --- !u!1 &7015037988256100897 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8922269914596278199, guid: e5832ba6decc1884e9a075acb2fe40e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1911829534689873302}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5361457026976498243 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5832045070634618837, guid: e5832ba6decc1884e9a075acb2fe40e1,
     type: 3}
   m_PrefabInstance: {fileID: 1911829534689873302}
   m_PrefabAsset: {fileID: 0}

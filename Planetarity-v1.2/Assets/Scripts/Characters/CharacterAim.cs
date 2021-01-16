@@ -1,27 +1,28 @@
 ﻿namespace Planetarity
 {
+    using System;
     using System.Collections;
     using Input;
     using UnityEngine;
 
-    public class CharacterAim : MonoBehaviour
+    public abstract class CharacterAim : MonoBehaviour
     {
         public Transform origin;
 
-        [SerializeField] private float rotationSpeed;
+        [SerializeField] private float rotationSpeed = 90;
 
-        private CharacterInputSystem inputSystem;
+        protected CharacterInputSystem inputSystem;
         private SphereCollider planetCollider;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             planetCollider = GetComponent<SphereCollider>();
-            inputSystem = GetComponent<CharacterInputSystem>();
 
-            inputSystem.AimEventHandler += StartAim;
+            inputSystem = GetComponent<CharacterInputSystem>();
+            inputSystem.OnInputAim += StartAim;
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             Vector3 offset = new Vector2(0, planetCollider.radius);
             origin.localPosition = offset;
@@ -30,10 +31,13 @@
         private void StartAim()
         {
             StopAllCoroutines();
-            StartCoroutine(AimRoutine());
+            CalculateSideToAim();
+            StartCoroutine(RotateAimRoutine());
         }
 
-        private IEnumerator AimRoutine()
+        protected abstract void CalculateSideToAim();
+
+        private IEnumerator RotateAimRoutine()
         {
             while (inputSystem.AimInputDirection != 0)
             {
@@ -49,7 +53,7 @@
         {
             if (inputSystem != null)
             {
-                inputSystem.AimEventHandler -= StartAim;
+                inputSystem.OnInputAim -= StartAim;
             }
         }
 
