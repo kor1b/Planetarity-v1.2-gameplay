@@ -12,12 +12,12 @@ namespace Planetarity
         private float lastShootTime;
         
         private CharacterInputSystem _inputSystem;
-        private PlayerAim _playerAim;
+        private CharacterAim characterAim;
 
         private void Awake()
         {
             _inputSystem = GetComponent<CharacterInputSystem>();
-            _playerAim = GetComponent<PlayerAim>();
+            characterAim = GetComponent<CharacterAim>();
 
             _inputSystem.shootEventHandler += Shoot;
         }
@@ -26,7 +26,7 @@ namespace Planetarity
         {
             if (!IsCooldownFinished()) return;
 
-            var newRocket = Instantiate(rocketPrefab, _playerAim.aimOrigin.position, _playerAim.aimOrigin.rotation)
+            var newRocket = Instantiate(rocketPrefab, characterAim.aimOrigin.position, characterAim.aimOrigin.rotation)
                 .GetComponent<Rocket>();
             newRocket.parent = gameObject;
 
