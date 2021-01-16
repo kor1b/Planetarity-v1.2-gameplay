@@ -19,7 +19,7 @@ namespace Planetarity
         
         private void Shoot()
         {
-            Instantiate(rocket, _playerAim.aimOrigin.position, Quaternion.identity);
+            Instantiate(rocket, _playerAim.aimOrigin.position, _playerAim.aimOrigin.rotation);
         }
         
         private void OnDestroy()
