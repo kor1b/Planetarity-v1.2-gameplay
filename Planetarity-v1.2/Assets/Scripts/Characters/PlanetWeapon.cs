@@ -26,7 +26,7 @@ namespace Planetarity
         {
             if (!IsCooldownFinished()) return;
 
-            var newRocket = Instantiate(rocketPrefab, characterAim.aimOrigin.position, characterAim.aimOrigin.rotation)
+            var newRocket = Instantiate(rocketPrefab, characterAim.origin.position, characterAim.origin.rotation)
                 .GetComponent<Rocket>();
             newRocket.parent = gameObject;
 

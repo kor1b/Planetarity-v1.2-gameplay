@@ -168,5 +168,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41c45c18047f944a8735fc616091f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimOrigin: {fileID: 5832045070634618837}
+  origin: {fileID: 5832045070634618837}
   rotationSpeed: 90

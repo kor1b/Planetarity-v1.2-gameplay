@@ -6,7 +6,7 @@
 
     public class CharacterAim : MonoBehaviour
     {
-        public Transform aimOrigin;
+        public Transform origin;
 
         [SerializeField] private float rotationSpeed;
 
@@ -18,16 +18,16 @@
             planetCollider = GetComponent<SphereCollider>();
             inputSystem = GetComponent<CharacterInputSystem>();
 
-            inputSystem.AimEventHandler += Aim;
+            inputSystem.AimEventHandler += StartAim;
         }
 
         private void Start()
         {
             Vector3 offset = new Vector2(0, planetCollider.radius);
-            aimOrigin.localPosition = offset;
+            origin.localPosition = offset;
         }
 
-        private void Aim()
+        private void StartAim()
         {
             StopAllCoroutines();
             StartCoroutine(AimRoutine());
@@ -37,8 +37,8 @@
         {
             while (inputSystem.AimInputDirection != 0)
             {
-                aimOrigin.RotateAround(transform.position,
-                    aimOrigin.forward,
+                origin.RotateAround(transform.position,
+                    origin.forward,
                     inputSystem.AimInputDirection * -rotationSpeed * Time.deltaTime);
 
                 yield return null;
@@ -49,15 +49,15 @@
         {
             if (inputSystem != null)
             {
-                inputSystem.AimEventHandler -= Aim;
+                inputSystem.AimEventHandler -= StartAim;
             }
         }
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(aimOrigin.position, .05f);
-            Gizmos.DrawLine(aimOrigin.position, aimOrigin.position + aimOrigin.up);
+            Gizmos.DrawSphere(origin.position, .05f);
+            Gizmos.DrawLine(origin.position, origin.position + origin.up);
         }
     }
 }

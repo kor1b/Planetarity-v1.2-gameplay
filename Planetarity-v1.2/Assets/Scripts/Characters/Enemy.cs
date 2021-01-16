@@ -5,6 +5,5 @@ namespace Planetarity
 
     public class Enemy : Character
     {
-        [HideInInspector] public Character enemy; // Enemy of this character
     }
 }
