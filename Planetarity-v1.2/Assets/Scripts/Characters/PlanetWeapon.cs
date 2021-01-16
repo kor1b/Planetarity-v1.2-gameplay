@@ -11,15 +11,15 @@ namespace Planetarity
 
         private float lastShootTime;
         
-        private CharacterInputSystem _inputSystem;
+        private CharacterInputSystem inputSystem;
         private CharacterAim characterAim;
 
         private void Awake()
         {
-            _inputSystem = GetComponent<CharacterInputSystem>();
+            inputSystem = GetComponent<CharacterInputSystem>();
             characterAim = GetComponent<CharacterAim>();
 
-            _inputSystem.shootEventHandler += Shoot;
+            inputSystem.ShootEventHandler += Shoot;
         }
 
         private void Shoot()
@@ -37,9 +37,9 @@ namespace Planetarity
 
         private void OnDestroy()
         {
-            if (_inputSystem != null)
+            if (inputSystem != null)
             {
-                _inputSystem.shootEventHandler -= Shoot;
+                inputSystem.ShootEventHandler -= Shoot;
             }
         }
     }

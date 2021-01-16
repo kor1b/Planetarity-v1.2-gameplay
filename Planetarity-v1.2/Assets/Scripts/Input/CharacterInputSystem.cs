@@ -7,14 +7,15 @@ namespace Planetarity.Input
     {
         public delegate void OnInput();
 
-        public OnInput aimEventHandler;
-        public OnInput shootEventHandler;
+        public OnInput AimEventHandler;
+        public OnInput ShootEventHandler;
 
         public int AimInputDirection { get; protected set; }
         
+        // TODO: remove context from parameters and set it only in player
         protected virtual void HandleAimInput(InputAction.CallbackContext context)
         {
-            aimEventHandler?.Invoke();
+            AimEventHandler?.Invoke();
         }
 
         protected virtual void CancelAimInput(InputAction.CallbackContext context)
@@ -24,7 +25,7 @@ namespace Planetarity.Input
         
         protected virtual void HandleShootInput(InputAction.CallbackContext context)
         {
-            shootEventHandler?.Invoke();
+            ShootEventHandler?.Invoke();
         }
     }
 }

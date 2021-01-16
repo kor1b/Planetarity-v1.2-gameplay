@@ -8,7 +8,7 @@
 
         [SerializeField] private float radius = 2;
 
-        private float _currentAngle;
+        private float currentAngle;
 
         private void Update()
         {
@@ -17,10 +17,10 @@
 
         private void Move()
         {
-            _currentAngle += speed * Mathf.Deg2Rad * Time.deltaTime;
+            currentAngle += speed * Mathf.Deg2Rad * Time.deltaTime;
 
-            var x = Mathf.Cos(_currentAngle);
-            var y = Mathf.Sin(_currentAngle);
+            var x = Mathf.Cos(currentAngle);
+            var y = Mathf.Sin(currentAngle);
 
             transform.position = new Vector2(x, y) * radius;
         }

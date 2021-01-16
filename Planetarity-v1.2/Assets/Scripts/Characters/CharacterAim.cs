@@ -10,20 +10,20 @@
 
         [SerializeField] private float rotationSpeed;
 
-        private CharacterInputSystem _inputSystem;
-        private SphereCollider _planetCollider;
+        private CharacterInputSystem inputSystem;
+        private SphereCollider planetCollider;
 
         private void Awake()
         {
-            _planetCollider = GetComponent<SphereCollider>();
-            _inputSystem = GetComponent<CharacterInputSystem>();
+            planetCollider = GetComponent<SphereCollider>();
+            inputSystem = GetComponent<CharacterInputSystem>();
 
-            _inputSystem.aimEventHandler += Aim;
+            inputSystem.AimEventHandler += Aim;
         }
 
         private void Start()
         {
-            Vector3 offset = new Vector2(0, _planetCollider.radius);
+            Vector3 offset = new Vector2(0, planetCollider.radius);
             aimOrigin.localPosition = offset;
         }
 
@@ -35,11 +35,11 @@
 
         private IEnumerator AimRoutine()
         {
-            while (_inputSystem.AimInputDirection != 0)
+            while (inputSystem.AimInputDirection != 0)
             {
                 aimOrigin.RotateAround(transform.position,
                     aimOrigin.forward,
-                    _inputSystem.AimInputDirection * -rotationSpeed * Time.deltaTime);
+                    inputSystem.AimInputDirection * -rotationSpeed * Time.deltaTime);
 
                 yield return null;
             }
@@ -47,9 +47,9 @@
 
         private void OnDestroy()
         {
-            if (_inputSystem != null)
+            if (inputSystem != null)
             {
-                _inputSystem.aimEventHandler -= Aim;
+                inputSystem.AimEventHandler -= Aim;
             }
         }
 

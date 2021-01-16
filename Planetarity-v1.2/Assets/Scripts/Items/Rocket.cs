@@ -11,12 +11,12 @@
         
         [HideInInspector] public GameObject parent;
         
-        private Rigidbody _rb;
-        private TriggerSource _triggerSource;
+        private Rigidbody rb;
+        private TriggerSource triggerSource;
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
 
             SubscribeOnTriggerEvents();
             
@@ -25,8 +25,8 @@
 
         private void SubscribeOnTriggerEvents()
         {
-            _triggerSource = GetComponent<TriggerSource>();
-            _triggerSource.OnEnter += OnEnter;
+            triggerSource = GetComponent<TriggerSource>();
+            triggerSource.OnEnter += OnEnter;
         }
 
         private void OnEnter(Collider other)
@@ -54,7 +54,7 @@
 
         private void Move()
         {
-            _rb.MovePosition(transform.position + transform.up * (speed * Time.fixedDeltaTime));
+            rb.MovePosition(transform.position + transform.up * (speed * Time.fixedDeltaTime));
         }
 
         private void DestroyByLifetime(float time)
