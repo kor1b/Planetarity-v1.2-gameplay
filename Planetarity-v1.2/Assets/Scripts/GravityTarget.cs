@@ -6,6 +6,6 @@ namespace Planetarity
     [RequireComponent(typeof(Rigidbody))]
     public class GravityTarget : MonoBehaviour
     {
-        public float mass = 1;
+        [Min(0)] public float mass = 1;
     }
 }
