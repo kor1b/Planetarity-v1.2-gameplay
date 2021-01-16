@@ -12,6 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fdab6a7cd64aa4a95040a16dd660c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7042751761876246971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7527084892853134480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e35f5b16c144acbc7713185e03fc6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  enemy: {fileID: 0}
 --- !u!1001 &1416336879905807143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19,6 +33,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7334003275405496700, guid: e5832ba6decc1884e9a075acb2fe40e1,
+        type: 3}
+      propertyPath: aimOrigin
+      value: 
+      objectReference: {fileID: 4848196419811316978}
+    - target: {fileID: 7334003275405496700, guid: e5832ba6decc1884e9a075acb2fe40e1,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278192, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: m_RootOrder
@@ -27,12 +51,12 @@ PrefabInstance:
     - target: {fileID: 8922269914596278192, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.49
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278192, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278192, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
@@ -74,10 +98,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8922269914596278196, guid: e5832ba6decc1884e9a075acb2fe40e1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278199, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: m_Name
-      value: EnemyPlanet
+      value: EnemyPlanet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278199, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
@@ -89,6 +118,12 @@ PrefabInstance:
 --- !u!1 &7527084892853134480 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8922269914596278199, guid: e5832ba6decc1884e9a075acb2fe40e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1416336879905807143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4848196419811316978 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5832045070634618837, guid: e5832ba6decc1884e9a075acb2fe40e1,
     type: 3}
   m_PrefabInstance: {fileID: 1416336879905807143}
   m_PrefabAsset: {fileID: 0}

@@ -2,7 +2,7 @@ namespace Planetarity
 {
     using UnityEngine;
 
-    public class Planet : SpaceObject, IDamageable
+    public abstract class Character : MonoBehaviour, IDamageable
     {
         [SerializeField] private float health;
 
