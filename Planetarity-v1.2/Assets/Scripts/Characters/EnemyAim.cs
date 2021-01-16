@@ -1,11 +1,14 @@
 namespace Planetarity
 {
+    using System;
     using UnityEngine;
 
     [RequireComponent(typeof(EnemyBattleLogic))]
     public class EnemyAim : CharacterAim
     {
         public Transform enemy;
+
+        public bool isAimed = false;
 
         protected override void CalculateSideToAim()
         {
@@ -14,14 +17,21 @@ namespace Planetarity
 
             var angleToRotate = Vector3.SignedAngle(aimDirection, directionToEnemy, Vector3.forward);
 
-            while (Mathf.Abs(angleToRotate) > 0)
+            Debug.Log($"angleToRotate => {angleToRotate}");
+
+            if (Mathf.Abs(angleToRotate) > 1)
             {
                 var sideToAim = (int) Mathf.Sign(angleToRotate);
 
                 inputSystem.AimInputDirection = sideToAim;
 
+                isAimed = false;
+                
                 return;
             }
+
+            print("aimed");
+            isAimed = true;
         }
 
         protected override void OnDrawGizmos()

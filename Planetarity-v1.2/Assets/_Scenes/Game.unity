@@ -543,6 +543,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252075291891858685, guid: d8683d3acaffd5641824dc1bff81c9a5,
+        type: 3}
+      propertyPath: cooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7015037988256100897, guid: d8683d3acaffd5641824dc1bff81c9a5,
         type: 3}
       propertyPath: m_Name
@@ -613,5 +618,6 @@ PrefabInstance:
       propertyPath: health
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3625931455643781634, guid: d8683d3acaffd5641824dc1bff81c9a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d8683d3acaffd5641824dc1bff81c9a5, type: 3}

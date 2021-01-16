@@ -3,7 +3,7 @@
     using UnityEngine;
     using Input;
 
-    public abstract class CharacterShooting : MonoBehaviour
+    public class CharacterShooting : MonoBehaviour
     {
         [SerializeField] private GameObject rocketPrefab;
         [SerializeField] private float cooldown;
@@ -23,7 +23,7 @@
 
         private void Shoot()
         {
-            if (!CanShoot()) return;
+            if (!IsCooldownFinished()) return;
 
             var newRocket = Instantiate(rocketPrefab, characterAim.origin.position, characterAim.origin.rotation)
                 .GetComponent<Rocket>();
@@ -31,8 +31,6 @@
 
             lastShootTime = Time.time;
         }
-
-        protected virtual bool CanShoot() => IsCooldownFinished();
 
         private bool IsCooldownFinished() => Time.time - lastShootTime > cooldown;
 
