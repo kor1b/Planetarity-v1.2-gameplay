@@ -7,7 +7,8 @@
     {
         [SerializeField] private float speed = 4;
         [SerializeField] private float lifeTime = 10;
-
+        [SerializeField] private float damage;
+        
         [HideInInspector] public GameObject parent;
         
         private Rigidbody _rb;
@@ -31,8 +32,19 @@
         private void OnEnter(Collider other)
         {
             if (other.gameObject == parent) return;
+
+            var target = other.GetComponent<IDamageable>();
+
+            target?.TakeDamage(damage);
+
+            Die();
             
             Debug.Log("trigger");
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
 
         private void FixedUpdate()

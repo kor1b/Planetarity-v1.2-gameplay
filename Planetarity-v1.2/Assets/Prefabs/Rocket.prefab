@@ -126,6 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   lifeTime: 10
+  damage: 1
+  parent: {fileID: 0}
 --- !u!114 &-7324205326928153592
 MonoBehaviour:
   m_ObjectHideFlags: 0
