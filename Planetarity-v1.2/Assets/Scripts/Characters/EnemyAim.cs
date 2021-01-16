@@ -5,23 +5,7 @@ namespace Planetarity
     [RequireComponent(typeof(EnemyBattleLogic))]
     public class EnemyAim : CharacterAim
     {
-        private EnemyBattleLogic enemyBattleLogic;
-
-        private Transform enemy;
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            enemyBattleLogic = GetComponent<EnemyBattleLogic>();
-        }
-
-        protected override void Start()
-        {
-            base.Start();
-
-            enemy = enemyBattleLogic.enemy;
-        }
+        public Transform enemy;
 
         protected override void CalculateSideToAim()
         {
@@ -30,7 +14,7 @@ namespace Planetarity
 
             var angleToRotate = Vector3.SignedAngle(aimDirection, directionToEnemy, Vector3.forward);
 
-            while (Mathf.Abs(angleToRotate) > 10)
+            while (Mathf.Abs(angleToRotate) > 0)
             {
                 var sideToAim = (int) Mathf.Sign(angleToRotate);
 
@@ -38,6 +22,16 @@ namespace Planetarity
 
                 return;
             }
+        }
+
+        protected override void OnDrawGizmos()
+        {
+            base.OnDrawGizmos();
+            
+            Gizmos.color = Color.cyan;
+            
+            if (enemy != null)
+                Gizmos.DrawLine(transform.position, enemy.transform.position);
         }
     }
 }

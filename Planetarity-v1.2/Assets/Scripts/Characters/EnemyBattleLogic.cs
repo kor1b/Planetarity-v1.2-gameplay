@@ -1,28 +1,31 @@
 namespace Planetarity
 {
-    using System;
     using Input;
-    using UnityEditor.UIElements;
     using UnityEngine;
 
     public class EnemyBattleLogic : MonoBehaviour
     {
-        [HideInInspector] public Transform enemy; // Enemy of this character
+        private CharacterInputSystem inputSystem;
+        private EnemyAim aim;
+        private CharacterShooting characterShooting;
 
         private void Awake()
         {
+            inputSystem = GetComponent<CharacterInputSystem>();
+            aim = GetComponent<EnemyAim>();
         }
 
         private void Update()
         {
-        }
+            // // todo: переделать на обсервер
+            if (aim.enemy == null)
+            {
+                inputSystem.CancelAimInput(default);
+                return;
+            }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.cyan;
-            
-            if (enemy != null)
-                Gizmos.DrawLine(transform.position, enemy.transform.position);
+            inputSystem.HandleAimInput(default);
+            inputSystem.HandleShootInput(default);
         }
     }
 }

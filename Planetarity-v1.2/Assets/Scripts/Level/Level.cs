@@ -6,12 +6,12 @@ namespace Planetarity.Level
     public class Level : MonoBehaviour
     {
         private Player player;
-        private List<EnemyBattleLogic> enemies;
+        private List<EnemyAim> enemies;
 
         private void Awake()
         {
             player = FindObjectOfType<Player>();
-            enemies = new List<EnemyBattleLogic>(FindObjectsOfType<EnemyBattleLogic>());
+            enemies = new List<EnemyAim>(FindObjectsOfType<EnemyAim>());
             
             SetEnemyForCharacters();
         }

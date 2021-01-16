@@ -1,6 +1,5 @@
 ﻿namespace Planetarity
 {
-    using System;
     using System.Collections;
     using Input;
     using UnityEngine;
@@ -57,7 +56,7 @@
             }
         }
 
-        private void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(origin.position, .05f);

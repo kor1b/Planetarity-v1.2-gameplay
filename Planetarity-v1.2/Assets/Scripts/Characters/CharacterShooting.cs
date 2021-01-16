@@ -1,16 +1,15 @@
-﻿using UnityEngine;
-
-namespace Planetarity
+﻿namespace Planetarity
 {
+    using UnityEngine;
     using Input;
 
-    public class CharacterShooting : MonoBehaviour
+    public abstract class CharacterShooting : MonoBehaviour
     {
         [SerializeField] private GameObject rocketPrefab;
         [SerializeField] private float cooldown;
 
         private float lastShootTime;
-        
+
         private CharacterInputSystem inputSystem;
         private CharacterAim characterAim;
 
@@ -24,7 +23,7 @@ namespace Planetarity
 
         private void Shoot()
         {
-            if (!IsCooldownFinished()) return;
+            if (!CanShoot()) return;
 
             var newRocket = Instantiate(rocketPrefab, characterAim.origin.position, characterAim.origin.rotation)
                 .GetComponent<Rocket>();
@@ -32,6 +31,8 @@ namespace Planetarity
 
             lastShootTime = Time.time;
         }
+
+        protected virtual bool CanShoot() => IsCooldownFinished();
 
         private bool IsCooldownFinished() => Time.time - lastShootTime > cooldown;
 
