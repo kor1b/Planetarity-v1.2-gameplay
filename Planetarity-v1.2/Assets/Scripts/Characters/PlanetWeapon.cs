@@ -4,7 +4,7 @@ namespace Planetarity
 {
     public class PlanetWeapon : MonoBehaviour
     {
-        [SerializeField] private GameObject rocket;
+        [SerializeField] private GameObject rocketPrefab;
         
         private PlayerInputSystem _playerInputSystem;
         private PlayerAim _playerAim;
@@ -19,7 +19,8 @@ namespace Planetarity
         
         private void Shoot()
         {
-            Instantiate(rocket, _playerAim.aimOrigin.position, _playerAim.aimOrigin.rotation);
+            var newRocket = Instantiate(rocketPrefab, _playerAim.aimOrigin.position, _playerAim.aimOrigin.rotation).GetComponent<Rocket>();
+            newRocket.parent = gameObject;
         }
         
         private void OnDestroy()

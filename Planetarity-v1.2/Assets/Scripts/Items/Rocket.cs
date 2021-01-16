@@ -1,32 +1,53 @@
-﻿using UnityEngine;
-
-[RequireComponent(typeof(Rigidbody))]
-public class Rocket : MonoBehaviour
+﻿namespace Planetarity
 {
-    [SerializeField] private float speed = 4;
-    [SerializeField] private float lifeTime = 10;
+    using UnityEngine;
 
-    private Rigidbody _rb;
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody))]
+    public class Rocket : MonoBehaviour
     {
-        _rb = GetComponent<Rigidbody>();
+        [SerializeField] private float speed = 4;
+        [SerializeField] private float lifeTime = 10;
+
+        [HideInInspector] public GameObject parent;
         
-        DestroyByLifetime(lifeTime);
-    }
+        private Rigidbody _rb;
+        private TriggerSource _triggerSource;
 
-    private void FixedUpdate()
-    {
-        Move();
-    }
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody>();
 
-    private void Move()
-    {
-        _rb.MovePosition(transform.position + transform.up * (speed * Time.fixedDeltaTime));
-    }
+            SubscribeOnTriggerEvents();
+            
+            DestroyByLifetime(lifeTime);
+        }
 
-    private void DestroyByLifetime(float time)
-    {
-        Destroy(gameObject, time);
+        private void SubscribeOnTriggerEvents()
+        {
+            _triggerSource = GetComponent<TriggerSource>();
+            _triggerSource.OnEnter += OnEnter;
+        }
+
+        private void OnEnter(Collider other)
+        {
+            if (other.gameObject == parent) return;
+            
+            Debug.Log("trigger");
+        }
+
+        private void FixedUpdate()
+        {
+            Move();
+        }
+
+        private void Move()
+        {
+            _rb.MovePosition(transform.position + transform.up * (speed * Time.fixedDeltaTime));
+        }
+
+        private void DestroyByLifetime(float time)
+        {
+            Destroy(gameObject, time);
+        }
     }
 }
