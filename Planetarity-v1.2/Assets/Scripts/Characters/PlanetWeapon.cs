@@ -2,19 +2,21 @@
 
 namespace Planetarity
 {
+    using Input;
+
     public class PlanetWeapon : MonoBehaviour
     {
         [SerializeField] private GameObject rocketPrefab;
         
-        private PlayerInputSystem _playerInputSystem;
+        private CharacterInputSystem _inputSystem;
         private PlayerAim _playerAim;
 
         private void Awake()
         {
-            _playerInputSystem = GetComponent<PlayerInputSystem>();
+            _inputSystem = GetComponent<CharacterInputSystem>();
             _playerAim = GetComponent<PlayerAim>();
 
-            _playerInputSystem.shootEventHandler += Shoot;
+            _inputSystem.shootEventHandler += Shoot;
         }
         
         private void Shoot()
@@ -25,9 +27,9 @@ namespace Planetarity
         
         private void OnDestroy()
         {
-            if (_playerInputSystem != null)
+            if (_inputSystem != null)
             {
-                _playerInputSystem.shootEventHandler -= Shoot;
+                _inputSystem.shootEventHandler -= Shoot;
             }
         }
     }
