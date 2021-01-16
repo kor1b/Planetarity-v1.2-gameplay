@@ -1,17 +1,10 @@
-﻿using UnityEngine;
+﻿using Planetarity.Input;
 using UnityEngine.InputSystem;
 
-public class PlayerInputSystem : MonoBehaviour
+public class PlayerInputSystem : CharacterInputSystem
 {
-    public delegate void OnInput();
-
-    public OnInput aimEventHandler;
-    public OnInput shootEventHandler;
-    
-    public int AimInputDirection { get; private set; }
-
     private InputMaster _input;
-    
+
     private void Awake()
     {
         _input = new InputMaster();
@@ -32,19 +25,14 @@ public class PlayerInputSystem : MonoBehaviour
         _input.Player.Aim.performed -= HandleAimInput;
         _input.Player.Aim.canceled -= CancelAimInput;
     }
-    
-    private void HandleAimInput(InputAction.CallbackContext context)
+
+    protected override void HandleAimInput(InputAction.CallbackContext context)
     {
-        AimInputDirection = (int)_input.Player.Aim.ReadValue<float>();
+        AimInputDirection = (int) _input.Player.Aim.ReadValue<float>();
         
-        aimEventHandler?.Invoke();
+        base.HandleAimInput(context);
     }
 
-    private void CancelAimInput(InputAction.CallbackContext context)
-    {
-        AimInputDirection = 0;
-    }
-    
     private void SubscribeOnPlayerShootInput()
     {
         _input.Player.Shoot.performed += HandleShootInput;
@@ -53,11 +41,6 @@ public class PlayerInputSystem : MonoBehaviour
     private void UnsubscribeFromPlayerShootInput()
     {
         _input.Player.Shoot.performed -= HandleShootInput;
-    }
-
-    private void HandleShootInput(InputAction.CallbackContext context)
-    {
-        shootEventHandler?.Invoke();
     }
 
     private void OnEnable()
