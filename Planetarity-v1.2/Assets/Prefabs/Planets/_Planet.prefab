@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8922269914596278195}
   - component: {fileID: 8922269914596278196}
   - component: {fileID: -7352227609371496085}
+  - component: {fileID: 2482059621728621405}
   m_Layer: 0
   m_Name: _Planet
   m_TagString: Untagged
@@ -138,8 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bda4adf9c741a408fd704bf88e108e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  radius: 2
+  orbitData:
+    speed: 0
+    radius: 0
+    startAngle: 0
 --- !u!114 &-7352227609371496085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +155,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b42543dba6116e468c451c0cfe5a4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketPrefab: {fileID: 5100431908077232610, guid: c9c0665b398d0b24f9f586ba88673fbf,
-    type: 3}
-  cooldown: 1
+  weapon: {fileID: 0}
+--- !u!114 &2482059621728621405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8922269914596278199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf29dd80a474361b1f2ca0e99de707f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 0.3
+  radius: 0.4
