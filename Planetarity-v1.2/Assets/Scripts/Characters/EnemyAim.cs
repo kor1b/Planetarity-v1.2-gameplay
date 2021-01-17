@@ -37,10 +37,8 @@ namespace Planetarity
             }
         }
 
-        protected override void OnDrawGizmos()
+        protected override void OnDrawGizmosSelected()
         {
-            base.OnDrawGizmos();
-            
             Gizmos.color = Color.cyan;
             
             if (target != null)

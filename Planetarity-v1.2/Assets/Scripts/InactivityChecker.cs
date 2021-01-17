@@ -1,9 +1,9 @@
 namespace Planetarity
 {
+    using Input;
     using UnityEngine;
     using UnityEngine.InputSystem;
 
-    // todo: unite signals with player input system
     public class InactivityChecker : MonoBehaviour
     {
         [SerializeField] private float inactivityTime = 60;
@@ -12,13 +12,19 @@ namespace Planetarity
 
         private float timeSinceLastAction = 0;
 
+        private PlayerInputSystem playerInputSystem;
         private InputMaster input;
         private Level.Level level;
 
         private void Awake()
         {
-            input = new InputMaster();
             level = FindObjectOfType<Level.Level>();
+        }
+
+        private void Start()
+        {
+            playerInputSystem = FindObjectOfType<PlayerInputSystem>();
+            input = playerInputSystem.Input;
 
             input.Player.Aim.performed += HandleInput;
             input.Player.Shoot.performed += HandleInput;
@@ -42,25 +48,13 @@ namespace Planetarity
         private void Update()
         {
             if (!isCheck) return;
-            
+
             timeSinceLastAction += Time.deltaTime;
 
             if (timeSinceLastAction > inactivityTime)
             {
                 level.Fail();
             }
-        }
-
-        private void OnEnable()
-        {
-            input.Player.Aim.Enable();
-            input.Player.Shoot.Enable();
-        }
-
-        private void OnDisable()
-        {
-            input.Player.Aim.Disable();
-            input.Player.Shoot.Disable();
         }
 
         private void OnDestroy()

@@ -56,7 +56,7 @@
             }
         }
 
-        protected virtual void OnDrawGizmos()
+        protected virtual void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(origin.position, .05f);

@@ -38,7 +38,7 @@ namespace Planetarity.Level
 
         private bool isEnd = false;
 
-        private void Start()
+        private void Awake()
         {
             SpawnCharacters();
         }
