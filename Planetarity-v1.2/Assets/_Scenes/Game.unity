@@ -438,11 +438,12 @@ MonoBehaviour:
     type: 3}
   enemyPrefab: {fileID: 7527084892853134480, guid: 59f42602cfb3423448180fd2491e2b25,
     type: 3}
-  enemiesAmount: 5
+  enemiesAmount: 1
   minPlanetSize: 1
   maxPlanetSize: 3
   minOrbitRadius: 2
   distanceBtwOrbits: 4
+  enemies: []
 --- !u!4 &1499576352
 Transform:
   m_ObjectHideFlags: 0

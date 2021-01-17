@@ -7,6 +7,13 @@ namespace Planetarity
     {
         [SerializeField] private float health;
 
+        protected Level.Level level;
+
+        private void Awake()
+        {
+            level = FindObjectOfType<Level.Level>();
+        }
+
         public void SetScale(float scale)
         {
             transform.localScale = Vector3.one * scale;
@@ -18,11 +25,10 @@ namespace Planetarity
             TryDie();
         }
 
-        private void TryDie()
+        protected virtual void TryDie()
         {
             if (health > 0) return;
 
-            Debug.Log("die");
             Destroy(gameObject);
         }
     }

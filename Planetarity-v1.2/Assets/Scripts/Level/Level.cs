@@ -19,7 +19,7 @@ namespace Planetarity.Level
         [SerializeField] private float distanceBtwOrbits;
 
         private Player player;
-        private List<EnemyAim> enemies;
+        public List<Enemy> enemies;
 
         private int playerOrderPosition;
         private float lastOrbitRadius;
@@ -35,7 +35,7 @@ namespace Planetarity.Level
             lastOrbitRadius = minOrbitRadius;
 
             playerOrderPosition = Random.Range(0, enemiesAmount);
-            enemies = new List<EnemyAim>(enemiesAmount);
+            enemies = new List<Enemy>(enemiesAmount);
 
             for (int i = 0; i < enemiesAmount; i++)
             {
@@ -50,7 +50,7 @@ namespace Planetarity.Level
 
                 newEnemy.radius = lastOrbitRadius;
 
-                enemies.Add(newEnemy.GetComponent<EnemyAim>());
+                enemies.Add(newEnemy.GetComponent<Enemy>());
 
 
                 lastOrbitRadius += distanceBtwOrbits;
@@ -69,7 +69,7 @@ namespace Planetarity.Level
         {
             foreach (var enemy in enemies)
             {
-                enemy.enemy = player.transform;
+                enemy.GetComponent<EnemyAim>().enemy = player.transform;
             }
         }
 

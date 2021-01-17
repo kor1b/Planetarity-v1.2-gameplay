@@ -38,8 +38,6 @@
             target?.TakeDamage(damage);
 
             Die();
-            
-            Debug.Log("trigger");
         }
 
         private void Die()
