@@ -1,7 +1,7 @@
 # Planetarity-v1.2-gameplay
 Ubisoft - Test Task Unity Developer
 
-# Name: Illia Rybas http://linkedin.com/in/illia-rybas/
+### Name: Illia Rybas http://linkedin.com/in/illia-rybas/
 
 I focused on the code, so the game definitely needs to go through the balance stage.
 
