@@ -26,6 +26,8 @@ namespace Planetarity.Level
 
         private float playerSpawnRadius;
 
+        private bool isEnd = false;
+
         private void Start()
         {
             // todo: учитывать размер планеты для дельты между орбитами 
@@ -69,6 +71,22 @@ namespace Planetarity.Level
             {
                 enemy.enemy = player.transform;
             }
+        }
+
+        public void CheckWin()
+        {
+            if (enemies.Count <= 0)
+            {
+                print("Win");
+            }
+        }
+
+        public void Fail()
+        {
+            if (isEnd) return;
+
+            isEnd = true;
+            print("Fail");
         }
     }
 }

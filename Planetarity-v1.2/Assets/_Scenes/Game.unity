@@ -414,6 +414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499576352}
   - component: {fileID: 1499576351}
+  - component: {fileID: 1499576353}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -433,7 +434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7207725178914a1cb5e3879f2ece0927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 7015037988256100897, guid: d8683d3acaffd5641824dc1bff81c9a5,
+    type: 3}
   enemyPrefab: {fileID: 7527084892853134480, guid: 59f42602cfb3423448180fd2491e2b25,
     type: 3}
   enemiesAmount: 5
@@ -455,6 +457,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1499576353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499576350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f21075d090344cfa995a355e0727f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inactivityTime: 30
 --- !u!1001 &1416336878672042718
 PrefabInstance:
   m_ObjectHideFlags: 0
