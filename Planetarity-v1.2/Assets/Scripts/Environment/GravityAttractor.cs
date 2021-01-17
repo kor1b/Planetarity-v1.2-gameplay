@@ -16,7 +16,7 @@ namespace Planetarity
 
         private void GravityFieldTick()
         {
-            var targets = Physics.OverlapSphere(transform.position, radius);
+            var targets = Physics.OverlapSphere(transform.position, transform.localScale.x + radius);
 
             for (int i = 0; i < targets.Length; i++)
             {
@@ -27,6 +27,8 @@ namespace Planetarity
 
         private void Attract(GravityAttractive objToAttract)
         {
+            if (IsTryAttractOwnRocket(objToAttract)) return;
+            
             var direction = transform.position - objToAttract.transform.position;
             var distance = direction.magnitude;
 
@@ -35,6 +37,11 @@ namespace Planetarity
 
             var rbToAttract = objToAttract.GetComponent<Rigidbody>();
             rbToAttract.AddForce(force);
+        }
+
+        private bool IsTryAttractOwnRocket(GravityAttractive objToAttract)
+        {
+            return objToAttract.TryGetComponent(out Rocket rocket) && rocket.parent == gameObject;
         }
 
         private void OnDrawGizmosSelected()
