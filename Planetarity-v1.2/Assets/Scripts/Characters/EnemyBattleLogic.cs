@@ -5,20 +5,20 @@ namespace Planetarity
 
     public class EnemyBattleLogic : MonoBehaviour
     {
+        private Enemy enemy;
         private CharacterInputSystem inputSystem;
-        private EnemyAim aim;
         private CharacterShooting characterShooting;
 
         private void Awake()
         {
             inputSystem = GetComponent<CharacterInputSystem>();
-            aim = GetComponent<EnemyAim>();
+            enemy = GetComponent<Enemy>();
         }
 
         private void Update()
         {
             // // todo: переделать на обсервер
-            if (aim.enemy == null)
+            if (enemy.enemy == null)
             {
                 inputSystem.CancelAimInput(default);
                 return;

@@ -41,6 +41,8 @@ namespace Planetarity
 
         private void Update()
         {
+            if (!isCheck) return;
+            
             timeSinceLastAction += Time.deltaTime;
 
             if (timeSinceLastAction > inactivityTime)

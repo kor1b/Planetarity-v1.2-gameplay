@@ -18,7 +18,7 @@ namespace Planetarity.Level
         [SerializeField] private float minOrbitRadius;
         [SerializeField] private float distanceBtwOrbits;
 
-        private Player player;
+        public Player player;
         public List<Enemy> enemies;
 
         private int playerOrderPosition;
@@ -69,7 +69,7 @@ namespace Planetarity.Level
         {
             foreach (var enemy in enemies)
             {
-                enemy.GetComponent<EnemyAim>().enemy = player.transform;
+                enemy.enemy = player.transform;
             }
         }
 

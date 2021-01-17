@@ -1,18 +1,30 @@
 namespace Planetarity
 {
-    using System;
     using UnityEngine;
 
     [RequireComponent(typeof(EnemyBattleLogic))]
     public class EnemyAim : CharacterAim
     {
-        public Transform enemy;
+        private Enemy thisEnemy;
+        private Transform target;
 
-        public bool isAimed = false;
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            thisEnemy = GetComponent<Enemy>();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+
+            target = thisEnemy.enemy;
+        }
 
         protected override void CalculateSideToAim()
         {
-            var directionToEnemy = enemy.position - transform.position;
+            var directionToEnemy = target.position - transform.position;
             var aimDirection = transform.position - origin.position;
 
             var angleToRotate = Vector3.SignedAngle(aimDirection, directionToEnemy, Vector3.forward);
@@ -22,14 +34,7 @@ namespace Planetarity
                 var sideToAim = (int) Mathf.Sign(angleToRotate);
 
                 inputSystem.AimInputDirection = sideToAim;
-
-                isAimed = false;
-                
-                return;
             }
-
-            print("aimed");
-            isAimed = true;
         }
 
         protected override void OnDrawGizmos()
@@ -38,8 +43,8 @@ namespace Planetarity
             
             Gizmos.color = Color.cyan;
             
-            if (enemy != null)
-                Gizmos.DrawLine(transform.position, enemy.transform.position);
+            if (target != null)
+                Gizmos.DrawLine(transform.position, target.transform.position);
         }
     }
 }
