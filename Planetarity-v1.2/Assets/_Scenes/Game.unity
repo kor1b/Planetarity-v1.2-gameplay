@@ -445,6 +445,8 @@ MonoBehaviour:
   maxOrbitSpeed: 90
   minOrbitRadius: 2
   distanceBtwOrbits: 1
+  minStartAngle: 0
+  maxStartAngle: 360
   player: {fileID: 0}
   enemies: []
 --- !u!4 &1499576352
@@ -593,7 +595,22 @@ PrefabInstance:
     - target: {fileID: 7015037988256100898, guid: d8683d3acaffd5641824dc1bff81c9a5,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015037988256100898, guid: d8683d3acaffd5641824dc1bff81c9a5,
+        type: 3}
+      propertyPath: orbitData.speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015037988256100898, guid: d8683d3acaffd5641824dc1bff81c9a5,
+        type: 3}
+      propertyPath: orbitData.radius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015037988256100898, guid: d8683d3acaffd5641824dc1bff81c9a5,
+        type: 3}
+      propertyPath: orbitData.startAngle
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7015037988256100900, guid: d8683d3acaffd5641824dc1bff81c9a5,
         type: 3}

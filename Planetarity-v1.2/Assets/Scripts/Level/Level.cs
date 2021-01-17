@@ -23,6 +23,9 @@ namespace Planetarity.Level
         [SerializeField] private float minOrbitRadius;
         [SerializeField] private float distanceBtwOrbits;
 
+        [SerializeField] private float minStartAngle;
+        [SerializeField] private float maxStartAngle;
+        
         public Player player;
         public List<Enemy> enemies;
 
@@ -72,14 +75,14 @@ namespace Planetarity.Level
         {
             var newCharacter = Instantiate(prefab, Vector3.zero, Quaternion.identity).GetComponent<Character>();
             
-            var data = new OrbitData()
+            var randomData = new OrbitData()
             {
                 radius = spawnRadius,
                 speed = Random.Range(minOrbitSpeed, maxOrbitSpeed),
-                startAngle = 0
+                startAngle = Random.Range(minStartAngle, maxStartAngle) * Mathf.Deg2Rad
             };
             
-            newCharacter.SetOrbitData(data);
+            newCharacter.SetOrbitData(randomData);
 
             return newCharacter;
         }
