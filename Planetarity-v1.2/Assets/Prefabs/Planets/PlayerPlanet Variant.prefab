@@ -116,7 +116,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c394626fb91df4d42abac7e67106c889, type: 2}
+      objectReference: {fileID: 2100000, guid: 9ad627dc231083a48a41eccbee2a877a, type: 2}
+    - target: {fileID: 8922269914596278194, guid: e5832ba6decc1884e9a075acb2fe40e1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 44560c7f86cc1bb4fb170f4e2c4306e8, type: 2}
     - target: {fileID: 8922269914596278198, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: cooldown

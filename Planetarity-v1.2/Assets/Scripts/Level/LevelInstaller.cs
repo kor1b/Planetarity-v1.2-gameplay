@@ -25,7 +25,7 @@ namespace Planetarity.LevelBased
         [HideInInspector] public Player player;
         [HideInInspector] public List<Enemy> enemies;
 
-        [Header("Weapon")] [SerializeField] private Rocket[] allowedWeapon;
+        [Header("Weapon")] [SerializeField] private Missile[] allowedWeapon;
 
         private int playerOrderPosition;
         

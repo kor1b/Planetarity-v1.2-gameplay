@@ -5,7 +5,7 @@
 
     public class CharacterShootingSystem : MonoBehaviour
     {
-        [SerializeField] private Rocket weapon;
+        [SerializeField] private Missile weapon;
 
         private float lastShootTime;
 
@@ -20,7 +20,7 @@
             inputSystem.OnInputShoot += Shoot;
         }
 
-        public void Construct(Rocket weapon)
+        public void Construct(Missile weapon)
         {
             this.weapon = weapon;
         }
@@ -29,8 +29,8 @@
         {
             if (!IsCooldownFinished()) return;
 
-            var newRocket = Instantiate(weapon, characterAim.origin.position, characterAim.origin.rotation);
-            newRocket.parent = gameObject;
+            var newMissile = Instantiate(weapon, characterAim.origin.position, characterAim.origin.rotation);
+            newMissile.parent = gameObject;
 
             lastShootTime = Time.time;
         }

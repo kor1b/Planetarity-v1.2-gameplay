@@ -3,7 +3,7 @@
     using UnityEngine;
 
     [RequireComponent(typeof(Rigidbody))]
-    public class Rocket : MonoBehaviour
+    public class Missile : MonoBehaviour
     {
         [SerializeField] private float speed = 4;
         [SerializeField] private float lifeTime = 10;

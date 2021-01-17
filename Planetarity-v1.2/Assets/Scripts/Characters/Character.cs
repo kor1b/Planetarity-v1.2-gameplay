@@ -31,7 +31,7 @@ namespace Planetarity
             orbitalMovement.Construct(data);
         }
 
-        public void SetWeapon(Rocket weapon)
+        public void SetWeapon(Missile weapon)
         {
             shootingSystem.Construct(weapon);
         }

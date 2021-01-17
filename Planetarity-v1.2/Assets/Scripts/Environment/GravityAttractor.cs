@@ -27,7 +27,7 @@ namespace Planetarity
 
         private void Attract(GravityAttractive objToAttract)
         {
-            if (IsTryAttractOwnRocket(objToAttract)) return;
+            if (IsTryAttractOwnMissile(objToAttract)) return;
             
             var direction = transform.position - objToAttract.transform.position;
             var distance = direction.magnitude;
@@ -39,9 +39,9 @@ namespace Planetarity
             rbToAttract.AddForce(force);
         }
 
-        private bool IsTryAttractOwnRocket(GravityAttractive objToAttract)
+        private bool IsTryAttractOwnMissile(GravityAttractive objToAttract)
         {
-            return objToAttract.TryGetComponent(out Rocket rocket) && rocket.parent == gameObject;
+            return objToAttract.TryGetComponent(out Missile missile) && missile.parent == gameObject;
         }
 
         private void OnDrawGizmosSelected()
