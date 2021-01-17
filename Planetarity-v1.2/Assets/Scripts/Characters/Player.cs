@@ -4,9 +4,11 @@ namespace Planetarity
     {
         protected override void TryDie()
         {
+            if (health > 0) return;
+
+            levelInstaller.levelResultComparer.Fail();
+
             base.TryDie();
-            
-            level.Fail();
         }
     }
 }

@@ -15,11 +15,11 @@ namespace Planetarity
 
         private PlayerInputSystem playerInputSystem;
         private InputMaster input;
-        private Level level;
+        private LevelInstaller levelInstaller;
 
         private void Awake()
         {
-            level = FindObjectOfType<Level>();
+            levelInstaller = FindObjectOfType<LevelInstaller>();
         }
 
         private void Start()
@@ -54,7 +54,7 @@ namespace Planetarity
 
             if (timeSinceLastAction > inactivityTime)
             {
-                level.Fail();
+                levelInstaller.levelResultComparer.FailByInactive();
             }
         }
 

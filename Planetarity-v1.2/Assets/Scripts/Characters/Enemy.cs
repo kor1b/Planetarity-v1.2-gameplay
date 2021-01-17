@@ -8,10 +8,12 @@ namespace Planetarity
 
         protected override void TryDie()
         {
+            if (health > 0) return;
+            
+            levelInstaller.enemies.Remove(this);
+            levelInstaller.levelResultComparer.CheckWin();
+            
             base.TryDie();
-
-            level.enemies.Remove(this);
-            level.CheckWin();
         }
     }
 }

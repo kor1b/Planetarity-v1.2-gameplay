@@ -6,16 +6,16 @@ namespace Planetarity
 
     public abstract class Character : MonoBehaviour, IDamageable
     {
-        [SerializeField] private float health;
+        [SerializeField] protected float health;
 
         private OrbitalMovement orbitalMovement;
         private CharacterShootingSystem shootingSystem;
         
-        protected Level level;
+        protected LevelInstaller levelInstaller;
 
         private void Awake()
         {
-            level = FindObjectOfType<Level>();
+            levelInstaller = FindObjectOfType<LevelInstaller>();
 
             orbitalMovement = GetComponent<OrbitalMovement>();
             shootingSystem = GetComponent<CharacterShootingSystem>();
@@ -44,8 +44,6 @@ namespace Planetarity
 
         protected virtual void TryDie()
         {
-            if (health > 0) return;
-
             Destroy(gameObject);
         }
     }

@@ -1,11 +1,9 @@
 namespace Planetarity.LevelBased
 {
-    using System;
     using System.Collections.Generic;
     using UnityEngine;
-    using Random = UnityEngine.Random;
 
-    public class Level : MonoBehaviour
+    public class LevelInstaller : MonoBehaviour
     {
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameObject enemyPrefab;
@@ -15,31 +13,31 @@ namespace Planetarity.LevelBased
         [SerializeField] private float minPlanetScale;
         [SerializeField] private float maxPlanetScale;
 
-        [Header("Orbits")]
-        
-        [SerializeField] private float minOrbitSpeed;
+        [Header("Orbits")] [SerializeField] private float minOrbitSpeed;
         [SerializeField] private float maxOrbitSpeed;
-        
+
         [SerializeField] private float minOrbitRadius;
         [SerializeField] private float distanceBtwOrbits;
 
         [SerializeField] private float minStartAngle;
         [SerializeField] private float maxStartAngle;
-        
+
         [HideInInspector] public Player player;
         [HideInInspector] public List<Enemy> enemies;
 
-        [Header("Weapon")]
-        
-        [SerializeField] private Rocket[] allowedWeapon;
+        [Header("Weapon")] [SerializeField] private Rocket[] allowedWeapon;
 
         private int playerOrderPosition;
-        private float playerSpawnRadius;
+        
+        private float tempPlayerSpawnRadius;
+        private float spawnRadius;
 
-        private bool isEnd = false;
+        [HideInInspector] public LevelResultComparer levelResultComparer;
 
         private void Awake()
         {
+            levelResultComparer = FindObjectOfType<LevelResultComparer>();
+            
             SpawnCharacters();
         }
 
@@ -47,38 +45,54 @@ namespace Planetarity.LevelBased
         {
             playerOrderPosition = Random.Range(0, enemiesAmount);
             enemies = new List<Enemy>(enemiesAmount);
-            
+
             SpawnEnemies();
-            
-            player = (Player) SpawnRandomCharacter(playerPrefab, playerSpawnRadius);
-            
+
+            spawnRadius = tempPlayerSpawnRadius;
+            player = (Player) SpawnRandomCharacter(playerPrefab);
+
             SetEnemyForCharacters(player);
         }
 
         private void SpawnEnemies()
         {
-            var lastOrbitRadius = minOrbitRadius;
-            
+            var lastSpawnRadius = minOrbitRadius;
+
             for (int i = 0; i < enemiesAmount; i++)
             {
                 if (i == playerOrderPosition)
                 {
-                    playerSpawnRadius = lastOrbitRadius;
-                    lastOrbitRadius += distanceBtwOrbits;
+                    tempPlayerSpawnRadius = lastSpawnRadius;
+                    lastSpawnRadius += distanceBtwOrbits;
                 }
 
-                var newEnemy = SpawnRandomCharacter(enemyPrefab, lastOrbitRadius);
-               
+                spawnRadius = lastSpawnRadius;
+                var newEnemy = SpawnRandomCharacter(enemyPrefab);
+
                 enemies.Add(newEnemy.GetComponent<Enemy>());
 
-                lastOrbitRadius += distanceBtwOrbits;
+                lastSpawnRadius += distanceBtwOrbits;
             }
         }
 
-        private Character SpawnRandomCharacter(GameObject prefab, float spawnRadius)
+        private Character SpawnRandomCharacter(GameObject prefab)
         {
             var newCharacter = Instantiate(prefab, Vector3.zero, Quaternion.identity).GetComponent<Character>();
-            
+
+            SetRandomData(newCharacter);
+
+            return newCharacter;
+        }
+
+        private void SetRandomData(Character character)
+        {
+            SetRandomOrbit(character);
+            SetRandomScale(character);
+            SetRandomWeapon(character);
+        }
+
+        private void SetRandomOrbit(Character character)
+        {
             var randomData = new OrbitData()
             {
                 radius = spawnRadius,
@@ -86,14 +100,19 @@ namespace Planetarity.LevelBased
                 startAngle = Random.Range(minStartAngle, maxStartAngle) * Mathf.Deg2Rad
             };
 
+            character.SetOrbitData(randomData);
+        }
+
+        private void SetRandomScale(Character character)
+        {
             var randomScale = Random.Range(minPlanetScale, maxPlanetScale);
+            character.SetScale(randomScale);
+        }
+
+        private void SetRandomWeapon(Character character)
+        {
             var randomWeapon = Random.Range(0, allowedWeapon.Length);
-            
-            newCharacter.SetOrbitData(randomData);
-            newCharacter.SetScale(randomScale);
-            newCharacter.SetWeapon(allowedWeapon[randomWeapon]);
-            
-            return newCharacter;
+            character.SetWeapon(allowedWeapon[randomWeapon]);
         }
 
         private void SetEnemyForCharacters(Character enemyTarget)
@@ -102,22 +121,6 @@ namespace Planetarity.LevelBased
             {
                 enemy.enemy = enemyTarget.transform;
             }
-        }
-
-        public void CheckWin()
-        {
-            if (enemies.Count <= 0)
-            {
-                print("Win");
-            }
-        }
-
-        public void Fail()
-        {
-            if (isEnd) return;
-
-            isEnd = true;
-            print("Fail");
         }
     }
 }
