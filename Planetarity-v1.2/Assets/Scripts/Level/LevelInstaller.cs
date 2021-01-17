@@ -30,7 +30,10 @@ namespace Planetarity.LevelBased
         [HideInInspector] public Player player;
         [HideInInspector] public List<Enemy> enemies;
 
-        [Header("Weapon")] [SerializeField] private Missile[] allowedWeapon;
+        [Header("Weapon")] 
+        
+        [SerializeField] private Missile[] enemyAllowedWeapon;
+        [SerializeField] private Missile playerWeapon;
 
         private int playerOrderPosition;
 
@@ -93,7 +96,7 @@ namespace Planetarity.LevelBased
         {
             SetRandomOrbit(character);
             SetRandomScale(character);
-            SetRandomWeapon(character);
+            SetWeapon(character);
             SetHealth(character);
         }
 
@@ -115,10 +118,22 @@ namespace Planetarity.LevelBased
             character.SetScale(randomScale);
         }
 
-        private void SetRandomWeapon(Character character)
+        private void SetWeapon(Character character)
         {
-            var randomWeapon = Random.Range(0, allowedWeapon.Length);
-            character.SetWeapon(allowedWeapon[randomWeapon]);
+            Missile weapon = default;
+            
+            switch (character)
+            {
+                case Enemy _:
+                    var id = Random.Range(0, enemyAllowedWeapon.Length);
+                    weapon = enemyAllowedWeapon[id];
+                    break;
+                case Player _:
+                    weapon = playerWeapon;
+                    break;
+            }
+
+            character.SetWeapon(weapon);
         }
 
         private void SetHealth(Character character)
