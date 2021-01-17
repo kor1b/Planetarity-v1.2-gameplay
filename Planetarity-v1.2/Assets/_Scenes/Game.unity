@@ -439,8 +439,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 7527084892853134480, guid: 59f42602cfb3423448180fd2491e2b25,
     type: 3}
   enemiesAmount: 5
-  minPlanetSize: 1
-  maxPlanetSize: 3
+  minPlanetScale: 0.5
+  maxPlanetScale: 0.7
   minOrbitSpeed: -20
   maxOrbitSpeed: 20
   minOrbitRadius: 2
@@ -449,6 +449,10 @@ MonoBehaviour:
   maxStartAngle: 360
   player: {fileID: 0}
   enemies: []
+  allowedWeapon:
+  - {fileID: 7786684675508504803, guid: 1a12a31c150b90d4ea4a3a601c8e1466, type: 3}
+  - {fileID: 1665762762169959119, guid: 586915885270997498f974010441f58e, type: 3}
+  - {fileID: 4568406574343175967, guid: 2349aee5d3df9ae488253ea5f570778e, type: 3}
 --- !u!4 &1499576352
 Transform:
   m_ObjectHideFlags: 0

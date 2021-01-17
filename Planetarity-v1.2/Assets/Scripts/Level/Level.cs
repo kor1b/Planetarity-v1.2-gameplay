@@ -29,6 +29,10 @@ namespace Planetarity.Level
         [HideInInspector] public Player player;
         [HideInInspector] public List<Enemy> enemies;
 
+        [Header("Weapon")]
+        
+        [SerializeField] private Rocket[] allowedWeapon;
+
         private int playerOrderPosition;
         private float playerSpawnRadius;
 
@@ -83,9 +87,11 @@ namespace Planetarity.Level
             };
 
             var randomScale = Random.Range(minPlanetScale, maxPlanetScale);
+            var randomWeapon = Random.Range(0, allowedWeapon.Length);
             
             newCharacter.SetOrbitData(randomData);
             newCharacter.SetScale(randomScale);
+            newCharacter.SetWeapon(allowedWeapon[randomWeapon]);
             
             return newCharacter;
         }

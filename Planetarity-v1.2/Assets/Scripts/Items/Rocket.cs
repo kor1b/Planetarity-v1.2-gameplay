@@ -8,7 +8,9 @@
         [SerializeField] private float speed = 4;
         [SerializeField] private float lifeTime = 10;
         [SerializeField] private float damage;
-        
+
+        public float cooldown;
+
         [HideInInspector] public GameObject parent;
         
         private Rigidbody rb;

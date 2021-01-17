@@ -8,6 +8,7 @@ namespace Planetarity
         [SerializeField] private float health;
 
         private OrbitalMovement orbitalMovement;
+        private CharacterShootingSystem shootingSystem;
         
         protected Level.Level level;
 
@@ -16,6 +17,7 @@ namespace Planetarity
             level = FindObjectOfType<Level.Level>();
 
             orbitalMovement = GetComponent<OrbitalMovement>();
+            shootingSystem = GetComponent<CharacterShootingSystem>();
         }
 
         public void SetScale(float scale)
@@ -26,6 +28,11 @@ namespace Planetarity
         public void SetOrbitData(OrbitData data)
         {
             orbitalMovement.Construct(data);
+        }
+
+        public void SetWeapon(Rocket weapon)
+        {
+            shootingSystem.Construct(weapon);
         }
 
         public void TakeDamage(float value)

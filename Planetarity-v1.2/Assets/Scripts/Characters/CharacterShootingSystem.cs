@@ -3,10 +3,9 @@
     using UnityEngine;
     using Input;
 
-    public class CharacterShooting : MonoBehaviour
+    public class CharacterShootingSystem : MonoBehaviour
     {
-        [SerializeField] private GameObject rocketPrefab;
-        [SerializeField] private float cooldown;
+        [SerializeField] private Rocket weapon;
 
         private float lastShootTime;
 
@@ -21,18 +20,22 @@
             inputSystem.OnInputShoot += Shoot;
         }
 
+        public void Construct(Rocket weapon)
+        {
+            this.weapon = weapon;
+        }
+
         private void Shoot()
         {
             if (!IsCooldownFinished()) return;
 
-            var newRocket = Instantiate(rocketPrefab, characterAim.origin.position, characterAim.origin.rotation)
-                .GetComponent<Rocket>();
+            var newRocket = Instantiate(weapon, characterAim.origin.position, characterAim.origin.rotation);
             newRocket.parent = gameObject;
 
             lastShootTime = Time.time;
         }
 
-        private bool IsCooldownFinished() => Time.time - lastShootTime > cooldown;
+        private bool IsCooldownFinished() => Time.time - lastShootTime > weapon.cooldown;
 
         private void OnDestroy()
         {

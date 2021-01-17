@@ -1,70 +1,57 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1989820923
+--- !u!114 &1164424395330584975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7527084892853134480}
+  m_GameObject: {fileID: 7015037988256100897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56fdab6a7cd64aa4a95040a16dd660c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ae85052f8a997e40904378bede685b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4865007658852878685
+--- !u!114 &4562451431952809641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7527084892853134480}
+  m_GameObject: {fileID: 7015037988256100897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d19cf3119182428e9cff27c9f59348e0, type: 3}
+  m_Script: {fileID: 11500000, guid: c46f39ec1c53477e8c7c4219ef2276c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5708927973409286294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7527084892853134480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c8227a5534416681619b33785e8482, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: {fileID: 4848196419811316978}
+  origin: {fileID: 5361457026976498243}
   rotationSpeed: 90
-  enemy: {fileID: 0}
-  isAimed: 0
---- !u!114 &7042751761876246971
+--- !u!114 &7392360777708182458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7527084892853134480}
+  m_GameObject: {fileID: 7015037988256100897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15e35f5b16c144acbc7713185e03fc6c, type: 3}
+  m_Script: {fileID: 11500000, guid: cdc656f0727e43898605fd600f0f4360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
---- !u!1001 &1416336879905807143
+  health: 10
+--- !u!1001 &1911829534689873302
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7334003275405496700, guid: e5832ba6decc1884e9a075acb2fe40e1,
+    - target: {fileID: -7352227609371496085, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
-      propertyPath: aimOrigin
+      propertyPath: rocketPrefab
       value: 
-      objectReference: {fileID: 4848196419811316978}
+      objectReference: {fileID: 7786684675508504803, guid: 1a12a31c150b90d4ea4a3a601c8e1466,
+        type: 3}
     - target: {fileID: 7334003275405496700, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: rotationSpeed
@@ -78,12 +65,12 @@ PrefabInstance:
     - target: {fileID: 8922269914596278192, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.73
+      value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278192, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278192, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
@@ -125,32 +112,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8922269914596278196, guid: e5832ba6decc1884e9a075acb2fe40e1,
+    - target: {fileID: 8922269914596278194, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c394626fb91df4d42abac7e67106c889, type: 2}
+    - target: {fileID: 8922269914596278198, guid: e5832ba6decc1884e9a075acb2fe40e1,
+        type: 3}
+      propertyPath: cooldown
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278199, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
       propertyPath: m_Name
-      value: EnemyPlanet Variant
+      value: PlayerPlanet Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8922269914596278199, guid: e5832ba6decc1884e9a075acb2fe40e1,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5832ba6decc1884e9a075acb2fe40e1, type: 3}
---- !u!1 &7527084892853134480 stripped
+--- !u!1 &7015037988256100897 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8922269914596278199, guid: e5832ba6decc1884e9a075acb2fe40e1,
     type: 3}
-  m_PrefabInstance: {fileID: 1416336879905807143}
+  m_PrefabInstance: {fileID: 1911829534689873302}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4848196419811316978 stripped
+--- !u!4 &5361457026976498243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5832045070634618837, guid: e5832ba6decc1884e9a075acb2fe40e1,
     type: 3}
-  m_PrefabInstance: {fileID: 1416336879905807143}
+  m_PrefabInstance: {fileID: 1911829534689873302}
   m_PrefabAsset: {fileID: 0}

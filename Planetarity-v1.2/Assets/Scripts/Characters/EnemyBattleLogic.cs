@@ -7,7 +7,7 @@ namespace Planetarity
     {
         private Enemy enemy;
         private CharacterInputSystem inputSystem;
-        private CharacterShooting characterShooting;
+        private CharacterShootingSystem characterShootingSystem;
 
         private void Awake()
         {
