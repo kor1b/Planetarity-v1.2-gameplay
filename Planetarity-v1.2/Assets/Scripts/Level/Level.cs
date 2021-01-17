@@ -45,10 +45,16 @@ namespace Planetarity.Level
                     lastOrbitRadius += distanceBtwOrbits;
                 }
 
-                var newEnemy = Instantiate(enemyPrefab, new Vector3(0, lastOrbitRadius, 0), Quaternion.identity)
-                    .GetComponent<OrbitalMovement>();
+                var newEnemy = Instantiate(enemyPrefab, new Vector3(0, lastOrbitRadius, 0), Quaternion.identity);
 
-                newEnemy.radius = lastOrbitRadius;
+                OrbitData data = new OrbitData()
+                {
+                    radius = lastOrbitRadius,
+                    speed = 20,
+                    startAngle = 0
+                };
+                newEnemy.GetComponent<Enemy>().SetOrbitData(data);
+                // newEnemy.radius = lastOrbitRadius;
 
                 enemies.Add(newEnemy.GetComponent<Enemy>());
 
@@ -60,9 +66,30 @@ namespace Planetarity.Level
 
             player = Instantiate(playerPrefab, new Vector3(0, playerSpawnRadius, 0), Quaternion.identity)
                 .GetComponent<Player>();
-            player.GetComponent<OrbitalMovement>().radius = playerSpawnRadius;
+            
+            OrbitData data2 = new OrbitData()
+            {
+                radius = playerSpawnRadius,
+                speed = 20,
+                startAngle = 0
+            };
+            
+            player.GetComponent<Player>().SetOrbitData(data2);
+
+            
+            // player.GetComponent<OrbitalMovement>().radius = playerSpawnRadius;
 
             SetEnemyForCharacters();
+        }
+
+        private void SpawnCharacter()
+        {
+            
+        }
+
+        private void SetRandomOrbit(Character character, OrbitData data)
+        {
+            character.SetOrbitData(data);
         }
 
         private void SetEnemyForCharacters()

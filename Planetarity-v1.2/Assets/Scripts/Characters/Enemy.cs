@@ -4,7 +4,7 @@ namespace Planetarity
 
     public class Enemy : Character
     {
-         public Transform enemy;    // The enemy of this character
+       [HideInInspector] public Transform enemy;    // The enemy of this character
 
         protected override void TryDie()
         {

@@ -7,11 +7,20 @@ namespace Planetarity
     {
         [SerializeField] private float health;
 
+        private OrbitalMovement orbitalMovement;
+        
         protected Level.Level level;
 
         private void Awake()
         {
             level = FindObjectOfType<Level.Level>();
+
+            orbitalMovement = GetComponent<OrbitalMovement>();
+        }
+
+        public void SetOrbitData(OrbitData data)
+        {
+            orbitalMovement.Construct(data);
         }
 
         public void SetScale(float scale)
