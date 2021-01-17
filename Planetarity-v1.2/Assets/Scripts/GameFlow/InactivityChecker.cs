@@ -3,6 +3,7 @@ namespace Planetarity
     using Input;
     using UnityEngine;
     using UnityEngine.InputSystem;
+    using LevelBased;
 
     public class InactivityChecker : MonoBehaviour
     {
@@ -14,11 +15,11 @@ namespace Planetarity
 
         private PlayerInputSystem playerInputSystem;
         private InputMaster input;
-        private Level.Level level;
+        private Level level;
 
         private void Awake()
         {
-            level = FindObjectOfType<Level.Level>();
+            level = FindObjectOfType<Level>();
         }
 
         private void Start()

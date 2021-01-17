@@ -2,6 +2,7 @@ namespace Planetarity
 {
     using System;
     using UnityEngine;
+    using LevelBased;
 
     public abstract class Character : MonoBehaviour, IDamageable
     {
@@ -10,11 +11,11 @@ namespace Planetarity
         private OrbitalMovement orbitalMovement;
         private CharacterShootingSystem shootingSystem;
         
-        protected Level.Level level;
+        protected Level level;
 
         private void Awake()
         {
-            level = FindObjectOfType<Level.Level>();
+            level = FindObjectOfType<Level>();
 
             orbitalMovement = GetComponent<OrbitalMovement>();
             shootingSystem = GetComponent<CharacterShootingSystem>();

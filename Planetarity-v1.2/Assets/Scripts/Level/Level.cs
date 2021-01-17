@@ -1,4 +1,4 @@
-namespace Planetarity.Level
+namespace Planetarity.LevelBased
 {
     using System;
     using System.Collections.Generic;
