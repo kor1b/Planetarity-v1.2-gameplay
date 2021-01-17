@@ -6,7 +6,7 @@
     {
         [SerializeField] private float speed = 90;
 
-        [SerializeField] private float radius = 2;
+        public float radius = 2;
 
         private float currentAngle;
 

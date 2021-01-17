@@ -17,8 +17,6 @@ namespace Planetarity
 
             var angleToRotate = Vector3.SignedAngle(aimDirection, directionToEnemy, Vector3.forward);
 
-            Debug.Log($"angleToRotate => {angleToRotate}");
-
             if (Mathf.Abs(angleToRotate) > 1)
             {
                 var sideToAim = (int) Mathf.Sign(angleToRotate);
