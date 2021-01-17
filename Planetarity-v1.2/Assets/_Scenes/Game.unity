@@ -737,6 +737,9 @@ MonoBehaviour:
   enemiesAmount: 3
   minPlanetScale: 0.5
   maxPlanetScale: 0.7
+  minEnemyHealth: 1
+  maxEnemyHealth: 3
+  playerHealth: 10
   minOrbitSpeed: -20
   maxOrbitSpeed: 20
   minOrbitRadius: 2

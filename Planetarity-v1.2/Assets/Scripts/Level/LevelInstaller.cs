@@ -13,6 +13,11 @@ namespace Planetarity.LevelBased
         [SerializeField] private float minPlanetScale;
         [SerializeField] private float maxPlanetScale;
 
+        [Header("Health")] [SerializeField] private float minEnemyHealth;
+        [SerializeField] private float maxEnemyHealth;
+
+        [SerializeField] private float playerHealth;
+
         [Header("Orbits")] [SerializeField] private float minOrbitSpeed;
         [SerializeField] private float maxOrbitSpeed;
 
@@ -28,7 +33,7 @@ namespace Planetarity.LevelBased
         [Header("Weapon")] [SerializeField] private Missile[] allowedWeapon;
 
         private int playerOrderPosition;
-        
+
         private float tempPlayerSpawnRadius;
         private float spawnRadius;
 
@@ -37,7 +42,7 @@ namespace Planetarity.LevelBased
         private void Awake()
         {
             levelResultComparer = FindObjectOfType<LevelResultComparer>();
-            
+
             SpawnCharacters();
         }
 
@@ -79,16 +84,17 @@ namespace Planetarity.LevelBased
         {
             var newCharacter = Instantiate(prefab, Vector3.zero, Quaternion.identity).GetComponent<Character>();
 
-            SetRandomData(newCharacter);
+            SetData(newCharacter);
 
             return newCharacter;
         }
 
-        private void SetRandomData(Character character)
+        private void SetData(Character character)
         {
             SetRandomOrbit(character);
             SetRandomScale(character);
             SetRandomWeapon(character);
+            SetHealth(character);
         }
 
         private void SetRandomOrbit(Character character)
@@ -113,6 +119,23 @@ namespace Planetarity.LevelBased
         {
             var randomWeapon = Random.Range(0, allowedWeapon.Length);
             character.SetWeapon(allowedWeapon[randomWeapon]);
+        }
+
+        private void SetHealth(Character character)
+        {
+            var health = 0f;
+
+            switch (character)
+            {
+                case Enemy _:
+                    health = Random.Range(minEnemyHealth, maxEnemyHealth);
+                    break;
+                case Player _:
+                    health = playerHealth;
+                    break;
+            }
+
+            character.SetHealth(health);
         }
 
         private void SetEnemyForCharacters(Character enemyTarget)

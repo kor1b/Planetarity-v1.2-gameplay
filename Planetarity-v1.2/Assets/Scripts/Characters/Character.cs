@@ -21,6 +21,11 @@ namespace Planetarity
             shootingSystem = GetComponent<CharacterShootingSystem>();
         }
 
+        public void SetHealth(float value)
+        {
+            health = value;
+        }
+        
         public void SetScale(float scale)
         {
             transform.localScale = Vector3.one * scale;
