@@ -15,6 +15,11 @@ namespace Planetarity.Level
         [SerializeField] private float minPlanetSize;
         [SerializeField] private float maxPlanetSize;
 
+        [Header("Orbits")]
+        
+        [SerializeField] private float minOrbitSpeed;
+        [SerializeField] private float maxOrbitSpeed;
+        
         [SerializeField] private float minOrbitRadius;
         [SerializeField] private float distanceBtwOrbits;
 
@@ -22,21 +27,31 @@ namespace Planetarity.Level
         public List<Enemy> enemies;
 
         private int playerOrderPosition;
-        private float lastOrbitRadius;
-
         private float playerSpawnRadius;
 
         private bool isEnd = false;
 
         private void Start()
         {
-            // todo: учитывать размер планеты для дельты между орбитами 
+            SpawnCharacters();
+        }
 
-            lastOrbitRadius = minOrbitRadius;
-
+        private void SpawnCharacters()
+        {
             playerOrderPosition = Random.Range(0, enemiesAmount);
             enemies = new List<Enemy>(enemiesAmount);
+            
+            SpawnEnemies();
+            
+            player = (Player) SpawnRandomCharacter(playerPrefab, playerSpawnRadius);
+            
+            SetEnemyForCharacters(player);
+        }
 
+        private void SpawnEnemies()
+        {
+            var lastOrbitRadius = minOrbitRadius;
+            
             for (int i = 0; i < enemiesAmount; i++)
             {
                 if (i == playerOrderPosition)
@@ -45,58 +60,35 @@ namespace Planetarity.Level
                     lastOrbitRadius += distanceBtwOrbits;
                 }
 
-                var newEnemy = Instantiate(enemyPrefab, new Vector3(0, lastOrbitRadius, 0), Quaternion.identity);
-
-                OrbitData data = new OrbitData()
-                {
-                    radius = lastOrbitRadius,
-                    speed = 20,
-                    startAngle = 0
-                };
-                newEnemy.GetComponent<Enemy>().SetOrbitData(data);
-                // newEnemy.radius = lastOrbitRadius;
-
+                var newEnemy = SpawnRandomCharacter(enemyPrefab, lastOrbitRadius);
+               
                 enemies.Add(newEnemy.GetComponent<Enemy>());
-
 
                 lastOrbitRadius += distanceBtwOrbits;
             }
+        }
 
-            Debug.Log($"playerSpawnRadius => {playerSpawnRadius}");
-
-            player = Instantiate(playerPrefab, new Vector3(0, playerSpawnRadius, 0), Quaternion.identity)
-                .GetComponent<Player>();
+        private Character SpawnRandomCharacter(GameObject prefab, float spawnRadius)
+        {
+            var newCharacter = Instantiate(prefab, Vector3.zero, Quaternion.identity).GetComponent<Character>();
             
-            OrbitData data2 = new OrbitData()
+            var data = new OrbitData()
             {
-                radius = playerSpawnRadius,
-                speed = 20,
+                radius = spawnRadius,
+                speed = Random.Range(minOrbitSpeed, maxOrbitSpeed),
                 startAngle = 0
             };
             
-            player.GetComponent<Player>().SetOrbitData(data2);
+            newCharacter.SetOrbitData(data);
 
-            
-            // player.GetComponent<OrbitalMovement>().radius = playerSpawnRadius;
-
-            SetEnemyForCharacters();
+            return newCharacter;
         }
 
-        private void SpawnCharacter()
-        {
-            
-        }
-
-        private void SetRandomOrbit(Character character, OrbitData data)
-        {
-            character.SetOrbitData(data);
-        }
-
-        private void SetEnemyForCharacters()
+        private void SetEnemyForCharacters(Character enemyTarget)
         {
             foreach (var enemy in enemies)
             {
-                enemy.enemy = player.transform;
+                enemy.enemy = enemyTarget.transform;
             }
         }
 

@@ -441,8 +441,10 @@ MonoBehaviour:
   enemiesAmount: 5
   minPlanetSize: 1
   maxPlanetSize: 3
+  minOrbitSpeed: -90
+  maxOrbitSpeed: 90
   minOrbitRadius: 2
-  distanceBtwOrbits: 4
+  distanceBtwOrbits: 1
   player: {fileID: 0}
   enemies: []
 --- !u!4 &1499576352
