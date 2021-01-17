@@ -19,11 +19,12 @@ namespace Planetarity
         public void CheckWin()
         {
             if (isEnd) return;
-            
+
             if (levelInstaller.enemies.Count <= 0)
+            {
                 windowsSpawner.SpawnWindow(windowsSpawner.victoryWindow);
-            
-            isEnd = true;
+                isEnd = true;
+            }
         }
 
         public void Fail()
