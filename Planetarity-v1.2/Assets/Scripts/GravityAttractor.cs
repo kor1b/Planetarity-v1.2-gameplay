@@ -20,12 +20,12 @@ namespace Planetarity
 
             for (int i = 0; i < targets.Length; i++)
             {
-                if (targets[i].TryGetComponent(out GravityTarget target))
+                if (targets[i].TryGetComponent(out GravityAttractive target))
                     Attract(target);
             }
         }
 
-        private void Attract(GravityTarget objToAttract)
+        private void Attract(GravityAttractive objToAttract)
         {
             var direction = transform.position - objToAttract.transform.position;
             var distance = direction.magnitude;
