@@ -441,8 +441,8 @@ MonoBehaviour:
   enemiesAmount: 5
   minPlanetSize: 1
   maxPlanetSize: 3
-  minOrbitSpeed: -90
-  maxOrbitSpeed: 90
+  minOrbitSpeed: -20
+  maxOrbitSpeed: 20
   minOrbitRadius: 2
   distanceBtwOrbits: 1
   minStartAngle: 0

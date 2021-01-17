@@ -18,14 +18,14 @@ namespace Planetarity
             orbitalMovement = GetComponent<OrbitalMovement>();
         }
 
-        public void SetOrbitData(OrbitData data)
-        {
-            orbitalMovement.Construct(data);
-        }
-
         public void SetScale(float scale)
         {
             transform.localScale = Vector3.one * scale;
+        }
+        
+        public void SetOrbitData(OrbitData data)
+        {
+            orbitalMovement.Construct(data);
         }
 
         public void TakeDamage(float value)

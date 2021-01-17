@@ -12,8 +12,8 @@ namespace Planetarity.Level
 
         [Min(1), SerializeField] private int enemiesAmount;
 
-        [SerializeField] private float minPlanetSize;
-        [SerializeField] private float maxPlanetSize;
+        [SerializeField] private float minPlanetScale;
+        [SerializeField] private float maxPlanetScale;
 
         [Header("Orbits")]
         
@@ -26,8 +26,8 @@ namespace Planetarity.Level
         [SerializeField] private float minStartAngle;
         [SerializeField] private float maxStartAngle;
         
-        public Player player;
-        public List<Enemy> enemies;
+        [HideInInspector] public Player player;
+        [HideInInspector] public List<Enemy> enemies;
 
         private int playerOrderPosition;
         private float playerSpawnRadius;
@@ -81,9 +81,12 @@ namespace Planetarity.Level
                 speed = Random.Range(minOrbitSpeed, maxOrbitSpeed),
                 startAngle = Random.Range(minStartAngle, maxStartAngle) * Mathf.Deg2Rad
             };
+
+            var randomScale = Random.Range(minPlanetScale, maxPlanetScale);
             
             newCharacter.SetOrbitData(randomData);
-
+            newCharacter.SetScale(randomScale);
+            
             return newCharacter;
         }
 
