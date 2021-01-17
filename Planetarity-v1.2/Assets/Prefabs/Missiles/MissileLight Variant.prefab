@@ -20,13 +20,13 @@ PrefabInstance:
     - target: {fileID: 5100431908077232610, guid: c9c0665b398d0b24f9f586ba88673fbf,
         type: 3}
       propertyPath: m_Name
-      value: RocketLight Variant
+      value: MissileLight Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5100431908077232620, guid: c9c0665b398d0b24f9f586ba88673fbf,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b5b118b6325cd554cb25f1352449d27a, type: 2}
+      objectReference: {fileID: 2100000, guid: 7f18cbe1d5bb5b349823131108abbf0d, type: 2}
     - target: {fileID: 5100431908077232622, guid: c9c0665b398d0b24f9f586ba88673fbf,
         type: 3}
       propertyPath: m_RootOrder
