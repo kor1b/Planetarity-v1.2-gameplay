@@ -1,0 +1,64 @@
+using System;
+using Client.Common.AltarRace;
+using Client.Common.Player.Controllers;
+using Client.Common.TimeGiver.Abstractions;
+using Client.TopDown.Market.UI;
+using Leopotam.Ecs;
+using Leopotam.Localization;
+
+namespace Client.TopDown.Market.AltarRace
+{
+    public class AltarRaceTimerSystem : IEcsInitSystem, IEcsRunSystem
+    {
+        private readonly ITimeGiver _timeService = default;
+        private readonly CsvLocalization _localization = default;
+        private readonly PlayerManager _playerManager = default;
+        private readonly AltarRaceService _altarRaceService = default;
+
+        private readonly AltarRaceButtonView _altarRaceButton;
+        
+        private int _prevTime;
+        
+        public AltarRaceTimerSystem(AltarRaceButtonView altarRaceButton)
+        {
+            _altarRaceButton = altarRaceButton;
+        }
+        
+        public void Init()
+        {
+            if (!IsEventStarted())
+            {
+                _altarRaceButton.gameObject.SetActive(false);
+                return;
+            }
+            
+            _altarRaceButton.Init((int)_altarRaceService.TimeBeforeEndEvent.TotalSeconds, _localization.Get("altar.race.finished"));
+            _altarRaceButton.SetTimer();
+        }
+
+        public void Run()
+        {
+            if (!IsEventStarted())
+            {
+                _altarRaceButton.SetTimer();
+                return;
+            }
+            
+            int currentSeconds = (int)_altarRaceService.TimeBeforeEndEvent.TotalSeconds;
+            if (currentSeconds == _prevTime)
+            {
+                _prevTime = currentSeconds;
+                return;
+            }
+            
+            _prevTime = currentSeconds;
+            _altarRaceButton.SetTimer(currentSeconds);
+        }
+        
+        private bool IsEventStarted()
+        {
+            int bloodCurrency = _playerManager.Session.Progress.TotalBloodGiver.GetCurrentTotal();
+            return bloodCurrency >= _altarRaceService.StartBloodAmount;
+        }
+    }
+}
